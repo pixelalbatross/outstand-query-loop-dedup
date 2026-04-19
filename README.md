@@ -4,6 +4,10 @@
 
 Opt-in per block via a toggle in the block editor. Supports custom queries, inherited queries, and arbitrary custom blocks via a [resolver filter](docs/deduplication.md#outstand_query_loop_deduplication_resolvers). Includes editor-side preview, PHP filters for per-block overrides, and an `exclude_duplicates` `WP_Query` arg for ad-hoc lists.
 
+![Outstand Query Loop Dedup](assets/demo.gif)
+
+## Features
+
 See [docs/deduplication.md](docs/deduplication.md) for the full feature guide.
 
 ## Installation
@@ -25,8 +29,8 @@ To include this plugin as a dependency in your Composer-managed WordPress projec
 composer require outstand/query-loop-dedup
 ```
 
-2. Run `composer install` to install the plugin.
-3. Activate the plugin from your WordPress admin area or using WP-CLI.
+1. Run `composer install` to install the plugin.
+2. Activate the plugin from your WordPress admin area or using WP-CLI.
 
 ## Quick start
 
