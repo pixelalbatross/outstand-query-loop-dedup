@@ -29,7 +29,7 @@ To include this plugin as a dependency in your Composer-managed WordPress projec
 composer require outstand/query-loop-dedup
 ```
 
-1. Run `composer install` to install the plugin.
+1. Run `composer install`.
 2. Activate the plugin from your WordPress admin area or using WP-CLI.
 
 ## Quick start
