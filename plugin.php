@@ -33,9 +33,11 @@ define( 'OUTSTAND_QUERY_LOOP_DEDUP_PATH', plugin_dir_path( __FILE__ ) );
 define( 'OUTSTAND_QUERY_LOOP_DEDUP_DIST_URL', OUTSTAND_QUERY_LOOP_DEDUP_URL . 'build/' );
 define( 'OUTSTAND_QUERY_LOOP_DEDUP_DIST_PATH', OUTSTAND_QUERY_LOOP_DEDUP_PATH . 'build/' );
 
-if ( file_exists( OUTSTAND_QUERY_LOOP_DEDUP_PATH . 'vendor/autoload.php' ) ) {
-	require_once OUTSTAND_QUERY_LOOP_DEDUP_PATH . 'vendor/autoload.php';
+if ( ! file_exists( OUTSTAND_QUERY_LOOP_DEDUP_PATH . 'vendor/autoload.php' ) ) {
+	return;
 }
+
+require_once OUTSTAND_QUERY_LOOP_DEDUP_PATH . 'vendor/autoload.php';
 
 PucFactory::buildUpdateChecker(
 	'https://github.com/pixelalbatross/outstand-query-loop-dedup/',
