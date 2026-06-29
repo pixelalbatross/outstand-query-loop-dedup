@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file, per [the Ke
 
 ## [Unreleased]
 
+## [1.0.2] - 2026-06-29
+
+- Fixed `OUTSTAND_QUERY_LOOP_DEDUP_VERSION` constant being out of sync with the plugin version.
+- Simplified the Composer autoload guard to bail early when `vendor/autoload.php` is missing.
+
 ## [1.0.1] - 2026-05-08
 
 - Added automated GitHub Release packaging via reusable release workflow; installation now points to the latest release ZIP.
