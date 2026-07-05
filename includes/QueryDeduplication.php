@@ -10,7 +10,7 @@ use WP_Query;
  *
  * Tracks rendered post IDs and excludes them from later Query Loop blocks
  * on the same page. Custom blocks can contribute IDs by registering a
- * resolver via the `outstand_query_loop_deduplication_resolvers` filter.
+ * resolver via the `outstand_query_loop_dedup_resolvers` filter.
  */
 class QueryDeduplication extends BaseModule {
 
@@ -19,7 +19,7 @@ class QueryDeduplication extends BaseModule {
 	 *
 	 * @var string
 	 */
-	private const CAPTURE_FLAG = 'outstand_dedup_capture';
+	private const CAPTURE_FLAG = 'outstand_query_loop_dedup_capture';
 
 	/**
 	 * Whether any block on the current page opts into deduplication.
@@ -68,7 +68,7 @@ class QueryDeduplication extends BaseModule {
 		 *
 		 * @param array<string, callable> $resolvers Block name to resolver map.
 		 */
-		$resolvers = apply_filters( 'outstand_query_loop_deduplication_resolvers', [] );
+		$resolvers = apply_filters( 'outstand_query_loop_dedup_resolvers', [] );
 
 		if ( ! is_array( $resolvers ) ) {
 			return;
@@ -403,7 +403,7 @@ class QueryDeduplication extends BaseModule {
 		 * @param WP_Block $block        The block instance.
 		 */
 		return (bool) apply_filters(
-			'outstand_query_loop_deduplication_should_track',
+			'outstand_query_loop_dedup_should_track',
 			$this->tracking_enabled,
 			$query_id,
 			$block->attributes,
@@ -435,7 +435,7 @@ class QueryDeduplication extends BaseModule {
 		 * @param WP_Block $block          The block instance.
 		 */
 		return (bool) apply_filters(
-			'outstand_query_loop_deduplication_should_exclude',
+			'outstand_query_loop_dedup_should_exclude',
 			$exclude_duplicates,
 			$query_id,
 			$block->attributes,

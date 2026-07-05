@@ -91,7 +91,7 @@ The registry is per-request, in-memory, static. No persistence.
 
 ## Filters
 
-### `outstand_query_loop_deduplication_resolvers`
+### `outstand_query_loop_dedup_resolvers`
 
 Register custom blocks so their rendered post IDs feed into the deduplication pool. Each entry maps a block name to a callable:
 
@@ -104,7 +104,7 @@ The callable must return a single int post ID, an array of int IDs, or `0`/`[]` 
 Example — register two custom blocks:
 
 ```php
-add_filter( 'outstand_query_loop_deduplication_resolvers', function ( array $resolvers ): array {
+add_filter( 'outstand_query_loop_dedup_resolvers', function ( array $resolvers ): array {
 
     // A picker block that stores a single post ID.
     $resolvers['acme/article-card'] = static function ( array $parsed_block ): int {
@@ -121,9 +121,9 @@ add_filter( 'outstand_query_loop_deduplication_resolvers', function ( array $res
 } );
 ```
 
-The plugin hooks `render_block_{name}` for each resolver on `init`. Each invocation is gated on `should_track` — so IDs only flow into the pool when page-wide tracking is active (or when `outstand_query_loop_deduplication_should_track` forces it on).
+The plugin hooks `render_block_{name}` for each resolver on `init`. Each invocation is gated on `should_track` — so IDs only flow into the pool when page-wide tracking is active (or when `outstand_query_loop_dedup_should_track` forces it on).
 
-### `outstand_query_loop_deduplication_should_track`
+### `outstand_query_loop_dedup_should_track`
 
 Override whether a specific block's rendered posts should be tracked.
 
@@ -135,7 +135,7 @@ Parameters:
 - `WP_Block $block`        — the block instance.
 
 ```php
-add_filter( 'outstand_query_loop_deduplication_should_track', function ( bool $should_track, string $query_id, array $attrs, WP_Block $block ): bool {
+add_filter( 'outstand_query_loop_dedup_should_track', function ( bool $should_track, string $query_id, array $attrs, WP_Block $block ): bool {
     // Never count the hero block towards dedup.
     if ( ( $attrs['className'] ?? '' ) === 'is-style-hero' ) {
         return false;
@@ -144,7 +144,7 @@ add_filter( 'outstand_query_loop_deduplication_should_track', function ( bool $s
 }, 10, 4 );
 ```
 
-### `outstand_query_loop_deduplication_should_exclude`
+### `outstand_query_loop_dedup_should_exclude`
 
 Override whether a specific block should exclude already-tracked posts from its query.
 
@@ -156,7 +156,7 @@ Parameters:
 - `WP_Block $block`          — the block instance.
 
 ```php
-add_filter( 'outstand_query_loop_deduplication_should_exclude', function ( bool $should_exclude, string $query_id, array $attrs, WP_Block $block ): bool {
+add_filter( 'outstand_query_loop_dedup_should_exclude', function ( bool $should_exclude, string $query_id, array $attrs, WP_Block $block ): bool {
     // Always exclude duplicates inside the related-posts widget.
     if ( ( $attrs['className'] ?? '' ) === 'related-posts' ) {
         return true;
@@ -198,4 +198,4 @@ To extend the preview to custom block attribute shapes, you need a separate JS H
 - **Editor preview for custom blocks** — the JS HOC only resolves `core/query` siblings. Custom block resolvers are PHP-only.
 - **Editor preview taxonomy queries** — `taxQuery` is dropped from REST args; the preview doesn't mirror taxonomy filters when computing dedup. Frontend is unaffected.
 - **Stale order across pagination** — tracked IDs are per-request only. AJAX/REST follow-up requests start with an empty pool.
-- **Resolver registration timing** — custom-block resolvers must be registered via the `outstand_query_loop_deduplication_resolvers` filter before `init` priority 10. Register on `plugins_loaded` or earlier.
+- **Resolver registration timing** — custom-block resolvers must be registered via the `outstand_query_loop_dedup_resolvers` filter before `init` priority 10. Register on `plugins_loaded` or earlier.

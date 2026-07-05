@@ -114,7 +114,7 @@ class IntegrationTest extends \WP_UnitTestCase {
 		$captured = [];
 
 		$capture = static function ( array $posts, $query ) use ( &$captured ) {
-			if ( $query && $query->get( 'outstand_dedup_capture' ) ) {
+			if ( $query && $query->get( 'outstand_query_loop_dedup_capture' ) ) {
 				$captured[] = array_map( static fn( $p ) => (int) $p->ID, $posts );
 			}
 			return $posts;

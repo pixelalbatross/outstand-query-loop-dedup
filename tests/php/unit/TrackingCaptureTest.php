@@ -22,28 +22,28 @@ class TrackingCaptureTest extends QueryDeduplicationTestCase {
 		$block = make_block( 'core/post-template', [], [ 'queryId' => 1 ] );
 		$query = $this->dedup->setup_query_tracking( [ 'post_type' => 'post' ], $block );
 
-		$this->assertArrayHasKey( 'outstand_dedup_capture', $query );
-		$this->assertTrue( $query['outstand_dedup_capture'] );
+		$this->assertArrayHasKey( 'outstand_query_loop_dedup_capture', $query );
+		$this->assertTrue( $query['outstand_query_loop_dedup_capture'] );
 	}
 
 	public function test_setup_query_tracking_noop_when_tracking_disabled(): void {
 		$block = make_block( 'core/post-template', [], [ 'queryId' => 1 ] );
 		$query = $this->dedup->setup_query_tracking( [ 'post_type' => 'post' ], $block );
 
-		$this->assertArrayNotHasKey( 'outstand_dedup_capture', $query );
+		$this->assertArrayNotHasKey( 'outstand_query_loop_dedup_capture', $query );
 	}
 
 	public function test_should_track_filter_override(): void {
 		$this->set_tracking_enabled( true );
 
-		add_filter( 'outstand_query_loop_deduplication_should_track', '__return_false' );
+		add_filter( 'outstand_query_loop_dedup_should_track', '__return_false' );
 
 		$block = make_block( 'core/post-template', [], [ 'queryId' => 1 ] );
 		$query = $this->dedup->setup_query_tracking( [], $block );
 
-		$this->assertArrayNotHasKey( 'outstand_dedup_capture', $query );
+		$this->assertArrayNotHasKey( 'outstand_query_loop_dedup_capture', $query );
 
-		remove_filter( 'outstand_query_loop_deduplication_should_track', '__return_false' );
+		remove_filter( 'outstand_query_loop_dedup_should_track', '__return_false' );
 	}
 
 	public function test_capture_query_posts_ignores_unflagged_query(): void {
@@ -57,7 +57,7 @@ class TrackingCaptureTest extends QueryDeduplicationTestCase {
 
 	public function test_capture_query_posts_captures_flagged_query(): void {
 		$query = new WP_Query( [ 'post_type' => 'post' ] );
-		$query->set( 'outstand_dedup_capture', true );
+		$query->set( 'outstand_query_loop_dedup_capture', true );
 
 		$posts = [ (object) [ 'ID' => 1 ], (object) [ 'ID' => 2 ], (object) [ 'ID' => 3 ] ];
 		$this->dedup->capture_query_posts( $posts, $query );

@@ -2,7 +2,7 @@
 
 > Prevents duplicate posts across multiple Query Loop blocks on the same page.
 
-Opt-in per block via a toggle in the block editor. Supports custom queries, inherited queries, and arbitrary custom blocks via a [resolver filter](docs/deduplication.md#outstand_query_loop_deduplication_resolvers). Includes editor-side preview, PHP filters for per-block overrides, and an `exclude_duplicates` `WP_Query` arg for ad-hoc lists.
+Opt-in per block via a toggle in the block editor. Supports custom queries, inherited queries, and arbitrary custom blocks via a [resolver filter](docs/deduplication.md#outstand_query_loop_dedup_resolvers). Includes editor-side preview, PHP filters for per-block overrides, and an `exclude_duplicates` `WP_Query` arg for ad-hoc lists.
 
 ![Outstand Query Loop Dedup](assets/demo.gif)
 

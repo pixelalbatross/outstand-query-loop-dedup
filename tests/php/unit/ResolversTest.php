@@ -7,7 +7,7 @@ use Outstand\WP\QueryLoop\Dedup\QueryDeduplication;
 use function Outstand\WP\QueryLoop\Dedup\Tests\make_block;
 
 /**
- * Custom-block resolvers registered via outstand_query_loop_deduplication_resolvers.
+ * Custom-block resolvers registered via outstand_query_loop_dedup_resolvers.
  *
  * @covers \Outstand\WP\QueryLoop\Dedup\QueryDeduplication::load_resolvers
  */
@@ -15,7 +15,7 @@ class ResolversTest extends QueryDeduplicationTestCase {
 
 	public function test_resolver_adds_single_id_to_registry(): void {
 		add_filter(
-			'outstand_query_loop_deduplication_resolvers',
+			'outstand_query_loop_dedup_resolvers',
 			static fn( array $r ): array => $r + [
 				'acme/card' => static fn( array $parsed ): int => (int) ( $parsed['attrs']['postId'] ?? 0 ),
 			]
@@ -34,7 +34,7 @@ class ResolversTest extends QueryDeduplicationTestCase {
 
 	public function test_resolver_adds_array_of_ids(): void {
 		add_filter(
-			'outstand_query_loop_deduplication_resolvers',
+			'outstand_query_loop_dedup_resolvers',
 			static fn( array $r ): array => $r + [
 				'acme/grid' => static fn( array $parsed ): array => array_map( 'intval', $parsed['attrs']['ids'] ?? [] ),
 			]
@@ -52,7 +52,7 @@ class ResolversTest extends QueryDeduplicationTestCase {
 
 	public function test_resolver_skipped_when_tracking_disabled(): void {
 		add_filter(
-			'outstand_query_loop_deduplication_resolvers',
+			'outstand_query_loop_dedup_resolvers',
 			static fn( array $r ): array => $r + [
 				'acme/card' => static fn( array $parsed ): int => (int) ( $parsed['attrs']['postId'] ?? 0 ),
 			]
@@ -70,7 +70,7 @@ class ResolversTest extends QueryDeduplicationTestCase {
 
 	public function test_resolver_zero_and_negative_ids_are_ignored(): void {
 		add_filter(
-			'outstand_query_loop_deduplication_resolvers',
+			'outstand_query_loop_dedup_resolvers',
 			static fn( array $r ): array => $r + [
 				'acme/card' => static fn( array $parsed ): array => [ 0, -1, 7 ],
 			]
@@ -88,7 +88,7 @@ class ResolversTest extends QueryDeduplicationTestCase {
 
 	public function test_invalid_resolver_entries_are_skipped(): void {
 		add_filter(
-			'outstand_query_loop_deduplication_resolvers',
+			'outstand_query_loop_dedup_resolvers',
 			static fn(): array => [
 				''          => static fn(): int => 1,
 				'acme/ok'   => 'not_callable',
@@ -107,7 +107,7 @@ class ResolversTest extends QueryDeduplicationTestCase {
 	}
 
 	public function test_non_array_filter_return_is_ignored(): void {
-		add_filter( 'outstand_query_loop_deduplication_resolvers', static fn() => 'garbage' );
+		add_filter( 'outstand_query_loop_dedup_resolvers', static fn() => 'garbage' );
 
 		$dedup = new QueryDeduplication();
 		// Should not throw / trigger errors.

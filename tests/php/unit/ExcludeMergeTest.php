@@ -79,7 +79,7 @@ class ExcludeMergeTest extends QueryDeduplicationTestCase {
 	public function test_should_exclude_filter_override(): void {
 		Deduplicator::add( 10 );
 
-		add_filter( 'outstand_query_loop_deduplication_should_exclude', '__return_false' );
+		add_filter( 'outstand_query_loop_dedup_should_exclude', '__return_false' );
 
 		$block = make_block(
 			'core/post-template',
@@ -93,19 +93,19 @@ class ExcludeMergeTest extends QueryDeduplicationTestCase {
 		$query = $this->dedup->maybe_exclude_tracked_posts( [], $block );
 		$this->assertArrayNotHasKey( 'post__not_in', $query );
 
-		remove_filter( 'outstand_query_loop_deduplication_should_exclude', '__return_false' );
+		remove_filter( 'outstand_query_loop_dedup_should_exclude', '__return_false' );
 	}
 
 	public function test_should_exclude_filter_can_opt_in(): void {
 		Deduplicator::add( 42 );
 
-		add_filter( 'outstand_query_loop_deduplication_should_exclude', '__return_true' );
+		add_filter( 'outstand_query_loop_dedup_should_exclude', '__return_true' );
 
 		$block = make_block( 'core/post-template', [], [ 'queryId' => 1 ] );
 
 		$query = $this->dedup->maybe_exclude_tracked_posts( [], $block );
 		$this->assertSame( [ 42 ], $query['post__not_in'] );
 
-		remove_filter( 'outstand_query_loop_deduplication_should_exclude', '__return_true' );
+		remove_filter( 'outstand_query_loop_dedup_should_exclude', '__return_true' );
 	}
 }
