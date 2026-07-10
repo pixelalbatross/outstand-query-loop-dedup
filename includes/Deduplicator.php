@@ -18,11 +18,6 @@ class Deduplicator {
 	private static array $post_ids = [];
 
 	/**
-	 * Private constructor — not instantiable.
-	 */
-	private function __construct() {}
-
-	/**
 	 * Add one or more post IDs to the registry.
 	 *
 	 * @param int ...$ids Post IDs to register.
@@ -72,4 +67,9 @@ class Deduplicator {
 	public static function clear(): void {
 		self::$post_ids = [];
 	}
+
+	/**
+	 * Private constructor — not instantiable.
+	 */
+	private function __construct() {}
 }

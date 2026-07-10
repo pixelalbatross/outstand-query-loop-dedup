@@ -19,11 +19,6 @@ class Plugin {
 	private array $modules = [];
 
 	/**
-	 * Private constructor to enforce singleton pattern.
-	 */
-	private function __construct() {}
-
-	/**
 	 * Returns singleton instance.
 	 *
 	 * @return Plugin The singleton instance.
@@ -70,4 +65,9 @@ class Plugin {
 	public function get_module( string $class ): ?BaseModule {
 		return $this->modules[ $class ] ?? null;
 	}
+
+	/**
+	 * Private constructor to enforce singleton pattern.
+	 */
+	private function __construct() {}
 }

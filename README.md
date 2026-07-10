@@ -38,6 +38,10 @@ composer require outstand/query-loop-dedup
 2. Enable **Exclude duplicate posts** in the block sidebar under the **Deduplication** panel.
 3. Each subsequent block will skip posts already shown by previous blocks.
 
+## Notes
+
+Deduplication runs at render time. For inherited queries, pagination counts (`found_posts`, `max_num_pages`) are recomputed after filtering, but only for duplicates known at render time — posts removed on later pages are not yet known when an earlier page renders. This is an inherent limitation of render-time deduplication.
+
 ## Requirements
 
 - WordPress 6.7 or higher

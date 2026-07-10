@@ -1,0 +1,52 @@
+# Copyright (C) 2026 Outstand
+# This file is distributed under the GPL-3.0-or-later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Outstand Query Loop Dedup 1.1.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/outstand-query-loop-dedup\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-07-10T10:07:55+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: outstand-query-loop-dedup\n"
+
+#. Plugin Name of the plugin
+#: plugin.php
+msgid "Outstand Query Loop Dedup"
+msgstr ""
+
+#. Plugin URI of the plugin
+#: plugin.php
+msgid "https://outstand.site/?utm_source=wp-plugins&utm_medium=outstand-query-loop-dedup&utm_campaign=plugin-uri"
+msgstr ""
+
+#. Description of the plugin
+#: plugin.php
+msgid "Prevents duplicate posts across multiple Query Loop blocks on the same page."
+msgstr ""
+
+#. Author of the plugin
+#: plugin.php
+msgid "Outstand"
+msgstr ""
+
+#. Author URI of the plugin
+#: plugin.php
+msgid "https://outstand.site/?utm_source=wp-plugins&utm_medium=outstand-query-loop-dedup&utm_campaign=author-uri"
+msgstr ""
+
+#: build/js/block-editor.js:1
+msgid "Deduplication"
+msgstr ""
+
+#: build/js/block-editor.js:1
+msgid "Exclude duplicate posts"
+msgstr ""
+
+#: build/js/block-editor.js:1
+msgid "Skip posts already shown by previous query loops on this page."
+msgstr ""
