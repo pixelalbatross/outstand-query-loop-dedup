@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file, per [the Ke
 
 ## [Unreleased]
 
+### Changed
+
+- Updated the plugin description in the plugin header, README, `composer.json`, `package.json`, and POT file to mention the per-block toggle.
+
 ## [1.2.0] - 2026-07-10
 
 - Added a `languages/` directory with `outstand-query-loop-dedup.pot` and `translate:*` npm scripts for i18n string extraction and compilation.

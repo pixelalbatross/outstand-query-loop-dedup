@@ -26,7 +26,7 @@ msgstr ""
 
 #. Description of the plugin
 #: plugin.php
-msgid "Prevents duplicate posts across multiple Query Loop blocks on the same page."
+msgid "Exclude duplicate posts across Query Loop blocks on the same page, with a per-block toggle in the block editor."
 msgstr ""
 
 #. Author of the plugin

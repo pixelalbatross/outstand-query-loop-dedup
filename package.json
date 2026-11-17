@@ -1,7 +1,7 @@
 {
   "name": "outstand-query-loop-dedup",
   "version": "1.2.0",
-  "description": "Prevents duplicate posts across multiple Query Loop blocks on the same page.",
+  "description": "Exclude duplicate posts across Query Loop blocks on the same page, with a per-block toggle in the block editor.",
   "contributors": [
     {
       "name": "S\u00e9rgio Santos",

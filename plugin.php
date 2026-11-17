@@ -2,7 +2,7 @@
 /**
  * @wordpress-plugin
  * Plugin Name:       Outstand Query Loop Dedup
- * Description:       Prevents duplicate posts across multiple Query Loop blocks on the same page.
+ * Description:       Exclude duplicate posts across Query Loop blocks on the same page, with a per-block toggle in the block editor.
  * Plugin URI:        https://outstand.site/?utm_source=wp-plugins&utm_medium=outstand-query-loop-dedup&utm_campaign=plugin-uri
  * Requires at least: 6.7
  * Requires PHP:      8.2
